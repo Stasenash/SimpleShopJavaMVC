@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO</title>
+<!--    <link type="text/css" href="static/css/index.css" th:href="@{static/css/index.css}" rel="stylesheet" />-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="/script/script.js" th:href="@{/script/script.js}"></script> -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+
+<style>
+   h1{
+       padding-left: 700px;
+   }
+   p{
+    margin: 0;
+}
+.content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.item{
+    border: 2px solid red;
+    width: 700px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;    
+    align-content: center;
+    margin-top: 30px;
+}
+.item_name{
+    padding-top: 15px;
+    padding-left: 15px;
+}
+.item_price{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+.itemAdd{
+    display: none;
+}
+.in-cart{
+    display: none;
+}
+
+</style>
+
+
+<a href="/"><button>back to the main page </button></a>
+<h1 >
+    It's your item in cart!!!
+</h1>
+
+        <div class="content">
+
+                <div  th:id="${item.getId()} + -item" th:each="item : ${items}">
+                    <div class="item">
+                        <form action="/cart" method="get">
+                            <p th:text="'id:' + ${item.getId()}" style="display: none;">
+                                    <p class="item_name"  th:text="'name:' + ${item.getName()}" ></p>
+                                    <p class="item_price" th:text="'price:' + ${item.getPrice()}" ></p>
+                                     
+                                    <button class="btn btn-sm btn-danger delete-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}"  th:text="delete"></button>
+                        </form>                        
+                    </div>
+            </div>
+        </div>
+
+<script>
+ $(".delete-btn").click((e) => {
+                var btn = $(e.currentTarget);
+                var itemId = btn.attr("data-item-id");
+                btn.attr("disabled", "disabled");
+
+                $.post("/item/" + itemId + "/delete/cart", () => {
+
+                });
+                })
+
+</script>
+        
+</body>
+</html>

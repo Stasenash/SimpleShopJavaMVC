@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TODO</title>
+    <link type="text/css" href="static/css/index.css" th:href="@{static/css/index.css}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="/script/script.js" th:href="@{/script/script.js}"></script> -->
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+
+<style>
+
+    p{
+    margin: 0;
+}
+.main{
+    display: flex;
+    align-self: center;
+    padding-left: 700px;
+}
+.content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.item{
+    border: 2px solid red;
+    width: 700px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;    
+    align-content: center;
+    margin-top: 30px;
+}
+.item_name{
+    padding-top: 15px;
+    padding-left: 15px;
+}
+.item_price{
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 15px;
+}
+.item_status{
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+.itemAdd{
+    display: none;
+}
+.add-button{
+    padding: 20px;
+}
+.cart{
+    padding-left: 20px;
+}
+
+
+</style>
+
+
+
+<body>
+        <a class="add-button" href="/add" >
+            <button>
+                add item
+            </button>
+        </a>
+
+        <div>
+            <a class="cart" href="/cart" >
+                <button>
+                    cart
+                </button>  
+            </a>
+        </div>
+        
+            <h1 class="main"> Main page</h1>
+    <div class="content">
+
+        <div  th:id="${item.getName()} + -item" th:each="item : ${items}">
+            <div class="item">
+                <form action="/" method="get">
+                    <p th:text="'id:' + ${item.getId()}" style="display: none;">
+                    <p class="item_name"  th:text="'name:' + ${item.getName()}" ></p>
+                    <p class="item_price" th:text="'price:' + ${item.getPrice()}" ></p>
+                    <p class= "item_status" th:text="'    status: ' + ${item.getStatus()}"></p>
+                    <button  class="btn btn-sm btn-danger delete-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}"  th:text="delete"></button>
+
+                    
+                </form>
+                <button class="btn btn-sm btn-danger add-in-cart-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}"  th:text="add-in-cart"></button>
+                
+            </div>
+
+    </div>
+</div>
+
+
+
+        
+  
+        <script>
+            $(".add-in-cart-btn").click((e) => {
+                var btn = $(e.currentTarget);
+                var itemId = btn.attr("data-item-id");
+                btn.css({
+                'color': 'red'
+                    });
+
+                btn.attr("disabled", "disabled");
+                $.post("/add/" + itemId + "/cart", () => {
+                });
+            });
+
+                $(".delete-btn").click((e) => {
+                var btn = $(e.currentTarget);
+                var itemId = btn.attr("data-item-id");
+                btn.attr("disabled", "disabled");
+
+                $.post("/item/" + itemId + "/delete", () => {
+
+                });
+            });
+
+ 
+        </script>
+    </div>
+</body>
+</html>
