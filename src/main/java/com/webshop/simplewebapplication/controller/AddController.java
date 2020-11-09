@@ -12,8 +12,7 @@ public class AddController {
                       @RequestParam("price") int price)  {
 
         ItemService itemService = new ItemService();
-        itemService.addItem(itemService.countOfItems() + 1, name, price, "Is available");
-
+        itemService.addItem(0, name, price, "Is available");
         return "confirm";
     }
 

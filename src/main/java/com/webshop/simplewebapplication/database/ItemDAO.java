@@ -12,5 +12,6 @@ public interface ItemDAO {
     void deleteItem(int id);
     int countOfItems();
     List<Item> findAllInCart();
-
+    void addItemToCart(int id);
+    void deleteFromCart(int id);
 }

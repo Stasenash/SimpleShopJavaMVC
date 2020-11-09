@@ -1,10 +1,10 @@
 package com.webshop.simplewebapplication.database;
 
 import com.webshop.simplewebapplication.model.Item;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.Query;
 import java.util.List;
 
 public class ItemDAOHib implements ItemDAO {
@@ -41,9 +41,9 @@ public class ItemDAOHib implements ItemDAO {
     public Item findById(int id) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try {
-            Query query = (Query) session.createQuery("FROM Item where id = :id");
+            Query query = session.createQuery("FROM Item where id = :id");
             query.setParameter("id", id);
-            return (Item) query.getSingleResult();
+            return (Item)query.list().get(0);
         } catch (Exception e) {
             return null;
         }finally {
@@ -70,10 +70,45 @@ public class ItemDAOHib implements ItemDAO {
     public List<Item> findAllInCart() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try{
-            List<Item> items = (List<Item>) session.createQuery("From Item").list();
+            List<Item> items = (List<Item>) session.createQuery("From Item where status = 'In cart'").list();
             return items;
         }catch (Exception e){
             return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void addItemToCart(int id) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try{
+            Transaction transaction = session.beginTransaction();
+            Item item = findById(id);
+            item.setStatus("In cart");
+            session.update(item);
+            transaction.commit();
+        }catch (Exception e){
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+    }
+
+    @Override
+    public void deleteFromCart(int id) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try{
+            Transaction transaction = session.beginTransaction();
+            Item item = findById(id);
+            item.setStatus("Is available");
+            session.update(item);
+            transaction.commit();
+        }catch (Exception e){
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
         }finally {
             session.close();
         }

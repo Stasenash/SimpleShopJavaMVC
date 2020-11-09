@@ -18,8 +18,7 @@ public class ItemService {
     }
 
     public void addItemToCart(int id) {
-        Item item = findById(id);
-        item.setStatus("In cart");
+        dataBase.addItemToCart(id);
     }
 
     public List<Item> findAll() {
@@ -36,8 +35,7 @@ public class ItemService {
     }
 
     public void deleteFromCart(int id){
-        Item item = findById(id);
-        item.setStatus("Is available");
+        dataBase.deleteFromCart(id);
     }
 
 
