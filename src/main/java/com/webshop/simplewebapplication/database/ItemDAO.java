@@ -13,6 +13,6 @@ public interface ItemDAO {
     int countOfItems();
     List<Item> findAllInCart();
     void addItemToCart(int id);
-    void deleteFromCart(int id);
+    void deleteFromCart(int id, boolean isSold);
     int getSumInCart();
 }

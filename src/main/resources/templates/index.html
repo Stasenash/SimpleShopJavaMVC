@@ -93,6 +93,7 @@
     }
     .delete-btn:hover{
         background-color: darkred;
+        color: white;
     }
 
 </style>
@@ -130,8 +131,8 @@
 
   <script>
       $(".add-to-cart-btn").click((e) => {
-          var btn = $(e.currentTarget);
-          var itemId = btn.attr("data-item-id");
+          let btn = $(e.currentTarget);
+          let itemId = btn.attr("data-item-id");
           btn.css({
           'color': 'gray'
           });
@@ -142,13 +143,14 @@
       });
 
       $(".delete-btn").click((e) => {
-          var btn = $(e.currentTarget);
-          var itemId = btn.attr("data-item-id");
+          let btn = $(e.currentTarget);
+          let itemId = btn.attr("data-item-id");
           btn.attr("disabled", "disabled");
           $.post("/item/" + itemId + "/delete", () => {
           });
           history.go(0);
       });
+
   </script>
 </body>
 </html>

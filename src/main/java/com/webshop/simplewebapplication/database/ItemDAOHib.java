@@ -98,12 +98,16 @@ public class ItemDAOHib implements ItemDAO {
     }
 
     @Override
-    public void deleteFromCart(int id) {
+    public void deleteFromCart(int id, boolean isSold) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try{
             Transaction transaction = session.beginTransaction();
             Item item = findById(id);
-            item.setStatus("Доступно для покупки");
+            if (isSold){
+                item.setStatus("Продано");
+            }else {
+                item.setStatus("Доступно для покупки");
+            }
             session.update(item);
             transaction.commit();
         }catch (Exception e){

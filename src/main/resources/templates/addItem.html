@@ -9,23 +9,40 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-
+<header>
+    <h2 style="margin-left: 10%; font-family: Algerian,serif;">SimpleShop</h2>
+</header>
 <body>
     <style>
         #confirm{
             display: none;
         }
+        header{
+            display: block;
+            height: 100px;
+            width: 100%;
+            background-image: url(https://ppo-mopb2.ru/wp-content/uploads/2019/11/kindergarten3-sectionsep3.png);
+        }
+        body {
+            background-image: url(https://www.yourlocaliga.com/wp-content/uploads/sites/166/2017/08/bg1.jpg);
+            background-repeat: no-repeat;
+        }
+        .itemAdd{
+            align-content: center;
+            margin-left: 35%;
+            margin-top: 10%;
+        }
     </style>
 
         
-    <div class= itemAdd id="prodAdd" >
-        <a href="/"><button>back to the main page </button></a>
-        <span class="descr">Add New Item</span>
+    <div class= "itemAdd" id="prodAdd" >
+        <a href="/"><button>Вернуться в товары</button></a>
+        <span class="descr">Добавить новый товар</span>
         <form action="/add/confirm" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="Name" name="name" id="name" required/>
             <input type="number" placeholder="Price" name="price" id="price" max="2147483647" required/>
                               
-            <button type="submit" id="submit">Add</button>   
+            <button type="submit" id="submit">Добавить</button>
  
         </form>
     </div>

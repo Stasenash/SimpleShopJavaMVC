@@ -65,9 +65,11 @@
     .delete-btn{
         background-color: red;
         width: 100%;
+        color: white;
     }
     .delete-btn:hover{
         background-color: darkred;
+        color: white;
     }
     .buy-button{
         background-color: chartreuse;
@@ -95,7 +97,7 @@
             </div>
         </div>
         <h2 th:text="'Итого: ' + ${sum} + '₽'"></h2>
-        <button class="buy-button">Оформить заказ</button>
+        <button class="buy-button" th:attr="data-items=${items}">Оформить заказ</button>
     </div>
 
 <script>
@@ -108,7 +110,11 @@
 
                 });
                 })
-
+ $(".buy-button").click((e) => {
+     $.post("/items/deleteAll/cart", () => {
+     });
+     history.go(0);
+ });
 </script>
         
 </body>

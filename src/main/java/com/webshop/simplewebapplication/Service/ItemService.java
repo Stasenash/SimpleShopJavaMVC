@@ -34,8 +34,8 @@ public class ItemService {
         return dataBase.countOfItems();
     }
 
-    public void deleteFromCart(int id){
-        dataBase.deleteFromCart(id);
+    public void deleteFromCart(int id, boolean isSold){
+        dataBase.deleteFromCart(id, isSold);
     }
 
 

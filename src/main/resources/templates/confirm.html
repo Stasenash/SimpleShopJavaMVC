@@ -9,24 +9,41 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-
+<header>
+    <h2 style="margin-left: 10%; font-family: Algerian,serif;">SimpleShop</h2>
+</header>
 <body>
 
 <style>
+    header{
+        display: block;
+        height: 100px;
+        width: 100%;
+        background-image: url(https://ppo-mopb2.ru/wp-content/uploads/2019/11/kindergarten3-sectionsep3.png);
+    }
+    body {
+        background-image: url(https://www.yourlocaliga.com/wp-content/uploads/sites/166/2017/08/bg1.jpg);
+        background-repeat: no-repeat;
+    }
     .confirm{
         font-size: large;
     }
+    .confirmation{
+        align-content: center;
+        margin-left: 35%;
+        margin-top: 10%;
+    }
 </style>
 
-
-        Do you want add this item?
-
+<div class="confirmation">
+        Вы хотите добавить этот товар?
     <a class="confirm" href="/" >
-        Yes
+        <button>Да</button>
     </a>
     <p>
-            <a href="/add">no, back to choose item</a>
+            <a href="/add">
+                <button>Нет, вернуться</button></a>
     </p>
-
+</div>
 </body>
 </html>
