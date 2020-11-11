@@ -14,4 +14,5 @@ public interface ItemDAO {
     List<Item> findAllInCart();
     void addItemToCart(int id);
     void deleteFromCart(int id);
+    int getSumInCart();
 }

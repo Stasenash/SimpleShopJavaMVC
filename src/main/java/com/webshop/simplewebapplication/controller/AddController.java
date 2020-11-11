@@ -3,22 +3,27 @@ package com.webshop.simplewebapplication.controller;
 import com.webshop.simplewebapplication.Service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
 public class AddController {
 
     @PostMapping("/add/confirm")
-    public String add(@RequestParam("name") String name,
-                      @RequestParam("price") int price)  {
+    public ModelAndView add(@RequestParam("name") String name,
+                            @RequestParam("price") int price)  {
 
         ItemService itemService = new ItemService();
-        itemService.addItem(0, name, price, "Is available");
-        return "confirm";
+        itemService.addItem(0, name, price, "Доступно для покупки");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("confirm");
+        return modelAndView;
     }
 
     @GetMapping("/add")
-    public String add(){
-        return "addItem";
+    public ModelAndView add(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("addItem");
+        return modelAndView;
     }
 
     @ResponseBody

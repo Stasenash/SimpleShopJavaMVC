@@ -46,4 +46,8 @@ public class ItemService {
     public List<Item> findAllInCart(){
         return dataBase.findAllInCart();
     }
+
+    public int getSumInCart() {
+        return dataBase.getSumInCart();
+    }
 }

@@ -9,69 +9,94 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-
+<header>
+    <h2 style="margin-left: 10%; font-family: Algerian,serif;">SimpleShop</h2>
+</header>
 <body>
 
 
 <style>
-   h1{
+    header{
+        display: block;
+        height: 100px;
+        width: 100%;
+        background-image: url(https://ppo-mopb2.ru/wp-content/uploads/2019/11/kindergarten3-sectionsep3.png);
+    }
+    body {
+        background-image: url(https://www.yourlocaliga.com/wp-content/uploads/sites/166/2017/08/bg1.jpg);
+        background-repeat: no-repeat;
+    }
+    h1{
        padding-left: 700px;
-   }
-   p{
+    }
+    p{
     margin: 0;
-}
-.content{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.item{
-    border: 2px solid red;
-    width: 700px;
-    display: flex;
-    align-self: center;
-    flex-direction: column;    
-    align-content: center;
-    margin-top: 30px;
-}
-.item_name{
-    padding-top: 15px;
-    padding-left: 15px;
-}
-.item_price{
-    padding-bottom: 15px;
-    padding-top: 15px;
-    padding-left: 15px;
-}
-.itemAdd{
-    display: none;
-}
-.in-cart{
-    display: none;
-}
+    }
+    .content{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .item{
+        border: 2px solid black;
+        width: 700px;
+        display: flex;
+        align-self: center;
+        flex-direction: column;
+        align-content: center;
+        margin-top: 30px;
+        background-color: antiquewhite;
+    }
+    .item_name{
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+    .item_price{
+        padding-bottom: 15px;
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+    .itemAdd{
+        display: none;
+    }
+    .in-cart{
+        display: none;
+    }
+    .delete-btn{
+        background-color: red;
+        width: 100%;
+    }
+    .delete-btn:hover{
+        background-color: darkred;
+    }
+    .buy-button{
+        background-color: chartreuse;
+    }
+    .buy-button:hover{
+        background-color: darkgreen;
+    }
 
 </style>
 
 
-<a href="/"><button>back to the main page </button></a>
-<h1 >
-    It's your item in cart!!!
+<a href="/"><button class="back">Вернуться в товары</button></a>
+<h1>
+    Ваши товары:
 </h1>
-
-        <div class="content">
-
-                <div  th:id="${item.getId()} + -item" th:each="item : ${items}">
-                    <div class="item">
-                        <form action="/cart" method="get">
-                            <p th:text="'id:' + ${item.getId()}" style="display: none;">
-                                    <p class="item_name"  th:text="'name:' + ${item.getName()}" ></p>
-                                    <p class="item_price" th:text="'price:' + ${item.getPrice()}" ></p>
-                                     
-                                    <button class="btn btn-sm btn-danger delete-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}"  th:text="delete"></button>
-                        </form>                        
-                    </div>
+    <div class="content">
+        <div  th:id="${item.getId()} + -item" th:each="item : ${items}">
+            <div class="item">
+                <form action="/cart" method="get">
+                    <p th:text="'id:' + ${item.getId()}" style="display: none;">
+                        <p class="item_name"  th:text="'Наименование товара: ' + ${item.getName()}" ></p>
+                        <p class="item_price" th:text="'Цена: ' + ${item.getPrice()} + '₽'" ></p>
+                        <button class="btn btn-sm delete-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}">Удалить из корзины</button>
+                </form>
             </div>
         </div>
+        <h2 th:text="'Итого: ' + ${sum} + '₽'"></h2>
+        <button class="buy-button">Оформить заказ</button>
+    </div>
 
 <script>
  $(".delete-btn").click((e) => {

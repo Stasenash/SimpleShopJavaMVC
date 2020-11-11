@@ -70,7 +70,7 @@ public class ItemDAOHib implements ItemDAO {
     public List<Item> findAllInCart() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try{
-            List<Item> items = (List<Item>) session.createQuery("From Item where status = 'In cart'").list();
+            List<Item> items = (List<Item>) session.createQuery("From Item where status = 'Уже в корзине'").list();
             return items;
         }catch (Exception e){
             return null;
@@ -85,7 +85,7 @@ public class ItemDAOHib implements ItemDAO {
         try{
             Transaction transaction = session.beginTransaction();
             Item item = findById(id);
-            item.setStatus("In cart");
+            item.setStatus("Уже в корзине");
             session.update(item);
             transaction.commit();
         }catch (Exception e){
@@ -103,12 +103,29 @@ public class ItemDAOHib implements ItemDAO {
         try{
             Transaction transaction = session.beginTransaction();
             Item item = findById(id);
-            item.setStatus("Is available");
+            item.setStatus("Доступно для покупки");
             session.update(item);
             transaction.commit();
         }catch (Exception e){
             System.out.println("Exception: " + e);
             e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int getSumInCart() {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try{
+            List<Item> items = (List<Item>) session.createQuery("From Item where status = 'Уже в корзине'").list();
+            int sum = 0;
+            for (Item item:items) {
+                sum += item.getPrice();
+            }
+            return sum;
+        }catch (Exception e){
+            return 0;
         }finally {
             session.close();
         }
