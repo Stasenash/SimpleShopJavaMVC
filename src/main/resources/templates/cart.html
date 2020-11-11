@@ -109,10 +109,12 @@
                 $.post("/item/" + itemId + "/delete/cart", () => {
 
                 });
+                alert("Товар удален из корзины!")
                 })
  $(".buy-button").click((e) => {
      $.post("/items/deleteAll/cart", () => {
      });
+     alert("Товары успешно куплены!")
      history.go(0);
  });
 </script>

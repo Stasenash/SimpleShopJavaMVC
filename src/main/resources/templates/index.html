@@ -139,6 +139,7 @@
           btn.attr("disabled", "disabled");
           $.post("/add/" + itemId + "/cart", () => {
           });
+          alert("Товар добавлен в корзину!")
           history.go(0);
       });
 
@@ -148,6 +149,7 @@
           btn.attr("disabled", "disabled");
           $.post("/item/" + itemId + "/delete", () => {
           });
+          alert("Товар удален из магазина!")
           history.go(0);
       });
 
