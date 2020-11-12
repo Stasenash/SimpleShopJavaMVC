@@ -14,7 +14,7 @@ import java.util.List;
 public class ListController {
 
     @GetMapping("/")
-    public ModelAndView index(Model model) {
+    public ModelAndView index() {
         ItemService itemService = new ItemService();
         List<Item> items = itemService.findAll();
         ModelAndView modelAndView = new ModelAndView();
@@ -24,7 +24,7 @@ public class ListController {
     }
 
     @GetMapping("/cart")
-    public ModelAndView cart(Model model) {
+    public ModelAndView cart() {
         ItemService itemService = new ItemService();
         List<Item> items = itemService.findAllInCart();
         int sumInCart = itemService.getSumInCart();

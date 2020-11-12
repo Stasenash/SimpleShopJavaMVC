@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 public class DeleteController {
-    @ResponseBody
     @RequestMapping(path = "/item/{id}/delete", method = RequestMethod.POST)
     public ModelAndView delete(@PathVariable("id") int id) {
         ItemService itemService = new ItemService();
@@ -20,7 +19,6 @@ public class DeleteController {
         return modelAndView;
     }
 
-    @ResponseBody
     @RequestMapping(path = "/item/{id}/delete/cart", method = RequestMethod.POST)
     public ModelAndView deleteFromCart(@PathVariable("id") int id) {
         ItemService itemService = new ItemService();
@@ -30,7 +28,6 @@ public class DeleteController {
         return modelAndView;
     }
 
-    @ResponseBody
     @RequestMapping(path = "/items/deleteAll/cart", method = RequestMethod.POST)
     public ModelAndView deleteAllFromCart() {
         ItemService itemService = new ItemService();
