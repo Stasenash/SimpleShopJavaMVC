@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add item to shop</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -37,13 +37,12 @@
         
     <div class= "itemAdd" id="prodAdd" >
         <a href="/"><button>Вернуться в товары</button></a>
-        <span class="descr">Добавить новый товар</span>
+        <span class="descr" id="add-item">Добавить новый товар</span>
         <form action="/add/confirm" method="post" enctype="multipart/form-data">
-            <input type="text" placeholder="Name" name="name" id="name" required/>
-            <input type="number" placeholder="Price" name="price" id="price" max="2147483647" required/>
+            <input type="text" placeholder="Name" name="name" id="name" th:required="required"/>
+            <input type="number" placeholder="Price" name="price" id="price" max="2147483647" th:required="required"/>
                               
             <button type="submit" id="submit">Добавить</button>
- 
         </form>
     </div>
 

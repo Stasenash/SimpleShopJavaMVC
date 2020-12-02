@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>SimpleShop - товары</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{../static/css/index.css}"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -105,7 +105,7 @@
 <body>
     <div>
         <a class="cart" href="/cart" >
-            <button><img src="https://www.freeiconspng.com/uploads/green-shopping-cart-icon-5.png" style="width: 20px; height: 20px" alt="Корзина"></button>
+            <button><img src="https://www.freeiconspng.com/uploads/green-shopping-cart-icon-5.png" style="width: 20px; height: 20px" alt="Корзина"/></button>
         </a>
     </div>
   <a class="add-button" href="/add">
@@ -113,11 +113,11 @@
   </a>
 
 
-  <div class="row content">
+  <div class="row content" id="item-list">
     <div class="col-md-4" th:id="${item.getName()} + -item" th:each="item : ${items}">
       <div class="item">
         <form action="/" method="get">
-          <p th:text="'id:' + ${item.getId()}" style="display: none;">
+          <p th:text="'id:' + ${item.getId()}" style="display: none;"/>
           <p class="item_name"  th:text="'Наименование товара: ' + ${item.getName()}" ></p>
           <p class="item_price" th:text="'Цена: ' + ${item.getPrice()} + '₽'" ></p>
           <p class= "item_status" th:text="'Статус: ' + ${item.getStatus()}"></p>

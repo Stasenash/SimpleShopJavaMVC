@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Your cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="UTF-8"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -89,14 +89,14 @@
         <div  th:id="${item.getId()} + -item" th:each="item : ${items}">
             <div class="item">
                 <form action="/cart" method="get">
-                    <p th:text="'id:' + ${item.getId()}" style="display: none;">
+                    <p th:text="'id:' + ${item.getId()}" style="display: none;"/>
                         <p class="item_name"  th:text="'Наименование товара: ' + ${item.getName()}" ></p>
                         <p class="item_price" th:text="'Цена: ' + ${item.getPrice()} + '₽'" ></p>
                         <button class="btn btn-sm delete-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}">Удалить из корзины</button>
                 </form>
             </div>
         </div>
-        <h2 th:text="'Итого: ' + ${sum} + '₽'"></h2>
+        <h2 th:text="'Итого: ' + ${sum} + '₽'" id="total"></h2>
         <button class="buy-button" th:attr="data-items=${items}">Оформить заказ</button>
     </div>
 

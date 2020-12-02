@@ -3,18 +3,20 @@ package com.webshop.simplewebapplication.Service;
 import com.webshop.simplewebapplication.database.ItemDAO;
 import com.webshop.simplewebapplication.database.ItemDAOHib;
 import com.webshop.simplewebapplication.model.Item;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ItemService {
-//    @Autowired
-    private static ItemDAO dataBase = new ItemDAOHib();
 
-    public void addItem(int id, String name, int price, String status) {
-        Item item = new Item(id, name, price, status);
+    @Autowired
+    private ItemDAOHib dataBase = new ItemDAOHib();
+
+    public boolean addItem(Item item) {
         dataBase.addItem(item);
+        return true;
     }
 
     public void addItemToCart(int id) {
@@ -39,8 +41,9 @@ public class ItemService {
     }
 
 
-    public void deleteItem(int id) {
+    public boolean deleteItem(int id) {
         dataBase.deleteItem(id);
+        return true;
     }
 
     public List<Item> findAllInCart(){

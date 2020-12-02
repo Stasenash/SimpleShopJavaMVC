@@ -1,9 +1,10 @@
 package com.webshop.simplewebapplication.database;
 
 import com.webshop.simplewebapplication.model.Item;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 public interface ItemDAO {
     void addItem(Item item);

@@ -4,9 +4,12 @@ import com.webshop.simplewebapplication.model.Item;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ItemDAOHib implements ItemDAO {
 
     @Override
