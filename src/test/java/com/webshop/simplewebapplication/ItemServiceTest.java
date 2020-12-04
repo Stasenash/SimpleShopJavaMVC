@@ -12,6 +12,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 class ItemServiceTest {
@@ -35,5 +38,19 @@ class ItemServiceTest {
 		boolean isItemDeleted = itemService.deleteItem(1);
 		Assert.assertTrue(isItemDeleted);
 		Mockito.verify(dataBase, Mockito.times(1)).deleteItem(1);
+	}
+
+	@Test
+	void findAll() {
+		List<Item> itemList = new ArrayList<>();
+		itemList.add(new Item(0, "Морковь", 17, "Доступно для покупки"));
+		Mockito.when(dataBase.findAll()).thenReturn(itemList);
+		Assert.assertArrayEquals(itemList.toArray(), itemService.findAll().toArray());
+	}
+
+	@Test
+	void countOfItems() {
+		Mockito.when(dataBase.countOfItems()).thenReturn(3);
+		Assert.assertEquals(3, itemService.countOfItems());
 	}
 }

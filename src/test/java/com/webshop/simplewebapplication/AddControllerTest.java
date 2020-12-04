@@ -1,6 +1,6 @@
 package com.webshop.simplewebapplication;
 
-import com.webshop.simplewebapplication.controller.ListController;
+import com.webshop.simplewebapplication.controller.AddController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,25 +16,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ListControllerTest {
+public class AddControllerTest {
 
     @Autowired
-    private ListController controller;
+    private AddController controller;
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void itemListTest() throws Exception {
-        this.mockMvc.perform(get("/"))
+    public void addItemPageTest() throws Exception {
+        this.mockMvc.perform(get("/add"))
                 .andDo(print())
-                .andExpect(xpath("//div[@id='item-list']/div").nodeCount(3));
-    }
-
-    @Test
-    public void countCartTest() throws Exception {
-        this.mockMvc.perform(get("/cart"))
-                .andDo(print())
-                .andExpect(xpath("//*[@id='total']").string("Итого: 49₽"));
+                .andExpect(xpath("//*[@id='add-item']").string("Добавить новый товар"));
     }
 }
