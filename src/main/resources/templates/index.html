@@ -120,7 +120,7 @@
           <p th:text="'id:' + ${item.getId()}" style="display: none;"/>
           <p class="item_name"  th:text="'Наименование товара: ' + ${item.getName()}" ></p>
           <p class="item_price" th:text="'Цена: ' + ${item.getPrice()} + '₽'" ></p>
-          <p class= "item_status" th:text="'Статус: ' + ${item.getStatus()}"></p>
+          <p class= "item_status" th:text="'Статус: ' + ${item.getPhone()}"></p>
           <button  class="btn btn-sm delete-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}">Удалить товар</button>
         </form>
         <button class="btn btn-sm add-to-cart-btn" th:id="${item.getId()}" th:attr="data-item-id=${item.getId()}">Добавить в корзину</button>

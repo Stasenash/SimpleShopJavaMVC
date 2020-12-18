@@ -4,7 +4,6 @@ import com.webshop.simplewebapplication.model.Item;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -88,7 +87,7 @@ public class ItemDAOHib implements ItemDAO {
         try{
             Transaction transaction = session.beginTransaction();
             Item item = findById(id);
-            item.setStatus("Уже в корзине");
+            item.setPhone("Уже в корзине");
             session.update(item);
             transaction.commit();
         }catch (Exception e){
@@ -107,9 +106,9 @@ public class ItemDAOHib implements ItemDAO {
             Transaction transaction = session.beginTransaction();
             Item item = findById(id);
             if (isSold){
-                item.setStatus("Продано");
+                item.setPhone("Продано");
             }else {
-                item.setStatus("Доступно для покупки");
+                item.setPhone("Доступно для покупки");
             }
             session.update(item);
             transaction.commit();

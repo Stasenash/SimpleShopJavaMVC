@@ -18,13 +18,17 @@ public class Item {
     private int price;
 
     @Column
-    private String status;
+    private String phone;
 
-    public Item(int id, String name, int price, String status) {
+    @ManyToOne
+    private Category category;
+
+    public Item(int id, String name, int price, String phone, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.status = status;
+        this.phone = phone;
+        this.category = category;
     }
 
     public int getId() {
@@ -51,13 +55,18 @@ public class Item {
         this.price = price;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPhone(String status) {
+        this.phone = status;
     }
+
+    public Category getCategory(){return category;}
+
+    public void setCategory(Category category){ this.category = category; }
+
 
 
     @Override
@@ -66,6 +75,7 @@ public class Item {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+
                 '}';
     }
 }

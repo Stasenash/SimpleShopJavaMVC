@@ -1,6 +1,7 @@
 package com.webshop.simplewebapplication.controller;
 
 import com.webshop.simplewebapplication.Service.ItemService;
+import com.webshop.simplewebapplication.model.Category;
 import com.webshop.simplewebapplication.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ ItemService itemService;
     public ModelAndView add(@RequestParam("name") String name,
                             @RequestParam("price") int price)  {
 
-        itemService.addItem(new Item(0, name, price, "Доступно для покупки"));
+        itemService.addItem(new Item(0, name, price, "89634609874", new Category(0, "Продукты")));
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("confirm");
         return modelAndView;

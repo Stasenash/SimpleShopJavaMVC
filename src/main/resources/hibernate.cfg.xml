@@ -20,5 +20,9 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
         <!-- dbcp connection pool configuration -->
+        <mapping class="com.webshop.simplewebapplication.model.Category"/>
+        <mapping class="com.webshop.simplewebapplication.model.Item"/>
+        <mapping class="com.webshop.simplewebapplication.model.User"/>
+        <mapping class="com.webshop.simplewebapplication.model.Cart"/>
     </session-factory>
 </hibernate-configuration>
