@@ -7,6 +7,9 @@
 <body>
 <a href="/"><button>На главную</button></a>
 <span class="descr">Регистрация</span>
+<div th:if="${error}">
+    Такой пользователь уже существует.
+</div>
 <form action="/registration" method="post" enctype="multipart/form-data">
     <input type="text" placeholder="login" name="login" id="login" th:required="required"/>
     <input type="password" placeholder="password" name="password" id="password" th:required="required"/>

@@ -69,7 +69,13 @@ public class Item {
 
     public Category getCategory(){return category;}
 
+    public String getCategoryName(){return category.getName();}
+
     public void setCategory(Category category){ this.category = category; }
+
+    public String getUserName(){
+        return myUser.getLogin();
+    }
 
 
 

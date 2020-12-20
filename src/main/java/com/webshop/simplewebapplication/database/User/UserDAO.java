@@ -4,4 +4,6 @@ import com.webshop.simplewebapplication.model.MyUser;
 
 public interface UserDAO {
     MyUser findByLogin(String login);
+
+    void createUser(MyUser user);
 }

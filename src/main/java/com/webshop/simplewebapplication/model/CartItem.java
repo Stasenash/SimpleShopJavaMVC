@@ -19,7 +19,8 @@ public class CartItem {
     @ManyToOne
     private Cart cart;
 
-    public CartItem(Item item, Cart cart) {
+    public CartItem(int id, Item item, Cart cart) {
+        this.id = id;
         this.item = item;
         this.cart = cart;
     }

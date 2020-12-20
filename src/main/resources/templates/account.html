@@ -7,7 +7,14 @@
 </head>
 <body>
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input type="submit" value="Выйти"/>
+</form>
+<a href="/"><button>На главную</button></a>
+<form th:action="@{/showUserItems}" method="post">
+    <input type="submit" value="Посмотреть мои товары"/>
+</form>
+<form th:action="@{/deleteAccount}" method="post">
+    <input type="submit" value="Удалить аккаунт"/>
 </form>
 </body>
 </html>

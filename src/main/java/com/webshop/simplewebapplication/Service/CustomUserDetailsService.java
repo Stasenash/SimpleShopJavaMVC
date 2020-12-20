@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
     @Autowired
     private UserDAO userDao;
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         MyUser myUser= userDao.findByLogin(userName);
@@ -25,5 +27,13 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .roles("USER")
                 .build();
         return user;
+    }
+
+    public MyUser findByLogin(String currentUserName) {
+        return userDao.findByLogin(currentUserName);
+    }
+
+    public void createUser(MyUser user) {
+        userDao.createUser(user);
     }
 }

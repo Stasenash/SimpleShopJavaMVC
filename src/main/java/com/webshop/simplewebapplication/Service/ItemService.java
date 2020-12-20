@@ -1,6 +1,7 @@
 package com.webshop.simplewebapplication.Service;
 
 import com.webshop.simplewebapplication.database.Item.ItemDAOHib;
+import com.webshop.simplewebapplication.model.Category;
 import com.webshop.simplewebapplication.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,9 @@ public class ItemService {
 
     public int getSumInCart() {
         return dataBase.getSumInCart();
+    }
+
+    public List<Item> getAllByCategory(Category category) {
+        return dataBase.getAllByCategory(category);
     }
 }

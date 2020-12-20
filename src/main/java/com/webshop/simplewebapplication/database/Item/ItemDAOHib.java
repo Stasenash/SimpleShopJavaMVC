@@ -1,6 +1,8 @@
 package com.webshop.simplewebapplication.database.Item;
 
+import com.webshop.simplewebapplication.controller.ListController;
 import com.webshop.simplewebapplication.database.HibernateSessionFactoryUtil;
+import com.webshop.simplewebapplication.model.Category;
 import com.webshop.simplewebapplication.model.Item;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -145,6 +147,18 @@ public class ItemDAOHib implements ItemDAO {
             return items.size();
         }catch (Exception e){
             return 0;
+        }finally {
+            session.close();
+        }
+    }
+
+    public List<Item> getAllByCategory(Category category) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            List<Item> items = (List<Item>) session.createQuery("From Item where category = :category").setParameter("category", category).list();
+            return items;
+        }catch (Exception e){
+            return null;
         }finally {
             session.close();
         }

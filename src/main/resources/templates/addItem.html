@@ -44,6 +44,7 @@
         <form action="/add" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="Name" name="name" id="name" th:required="required"/>
             <input type="number" placeholder="Price" name="price" id="price" max="2147483647" th:required="required"/>
+            <input type="tel" placeholder="Phone" name="phone" id="phone" th:required="required"/>
             <select name="category" id="category" th:required="required">
                 <option th:each="category : ${categories}"
                         th:value="${category.getName()}"

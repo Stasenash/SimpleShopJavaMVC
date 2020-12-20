@@ -1,5 +1,6 @@
 package com.webshop.simplewebapplication.database.Item;
 
+import com.webshop.simplewebapplication.model.Category;
 import com.webshop.simplewebapplication.model.Item;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,4 +17,5 @@ public interface ItemDAO {
     void addItemToCart(int id);
     void deleteFromCart(int id, boolean isSold);
     int getSumInCart();
+    List<Item> getAllByCategory(Category category);
 }

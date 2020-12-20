@@ -1,6 +1,9 @@
 package com.webshop.simplewebapplication.controller;
 
+import com.webshop.simplewebapplication.Service.CartService;
 import com.webshop.simplewebapplication.Service.CustomUserDetailsService;
+import com.webshop.simplewebapplication.model.Cart;
+import com.webshop.simplewebapplication.model.MyUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class RegistrationController {
     @Autowired
     private CustomUserDetailsService userService;
 
+    @Autowired
+    private CartService cartService;
+
     @GetMapping("/registration")
     public String registration() {
         return "registration";
@@ -27,12 +33,17 @@ public class RegistrationController {
     public ModelAndView add(@RequestParam("login") String login,
                             @RequestParam("password") String password)  {
 
-//       userService.addUser();
-//        если успешно то создаем корзину и кидаем на логин
-//        иначе пишем ошибку
-        logger.info("Created user with login: " + login);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
+        if (userService.findByLogin(login) == null){
+            Cart cart = new Cart(0,login);
+            cartService.createCart(cart);
+            userService.createUser(new MyUser(0, login, password, cart));
+            logger.info("Created user with login: " + login);
+            modelAndView.setViewName("login");
+        } else{
+            modelAndView.setViewName("registration");
+            modelAndView.addObject("error", true);
+        }
         return modelAndView;
     }
 }
