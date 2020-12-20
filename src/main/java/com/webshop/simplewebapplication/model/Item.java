@@ -23,12 +23,16 @@ public class Item {
     @ManyToOne
     private Category category;
 
-    public Item(int id, String name, int price, String phone, Category category) {
+    @ManyToOne
+    private MyUser myUser;
+
+    public Item(int id, String name, int price, String phone, Category category, MyUser myUser) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.phone = phone;
         this.category = category;
+        this.myUser = myUser;
     }
 
     public int getId() {

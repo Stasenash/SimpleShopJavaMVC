@@ -13,13 +13,10 @@ public class Cart {
     private int id;
     @Column
     private String name;
-    @ManyToOne
-    private Item item;
 
-    public Cart(int id, String name, Item item) {
+    public Cart(int id, String name) {
         this.id = id;
         this.name = name;
-        this.item = item;
     }
 
     public int getId() {
@@ -36,14 +33,6 @@ public class Cart {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     @Override

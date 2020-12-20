@@ -3,10 +3,10 @@ package com.webshop.simplewebapplication.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "my_user")
+public class MyUser {
 
-    public User(){}
+    public MyUser(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class User {
     private Cart cart;
 
 
-    public User(int user_id, String login, String password, Cart cart) {
+    public MyUser(int user_id, String login, String password, Cart cart) {
         this.id = user_id;
         this.login = login;
         this.password = password;

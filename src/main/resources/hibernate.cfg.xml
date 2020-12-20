@@ -22,7 +22,8 @@
         <!-- dbcp connection pool configuration -->
         <mapping class="com.webshop.simplewebapplication.model.Category"/>
         <mapping class="com.webshop.simplewebapplication.model.Item"/>
-        <mapping class="com.webshop.simplewebapplication.model.User"/>
+        <mapping class="com.webshop.simplewebapplication.model.MyUser"/>
         <mapping class="com.webshop.simplewebapplication.model.Cart"/>
+        <mapping class="com.webshop.simplewebapplication.model.CartItem"/>
     </session-factory>
 </hibernate-configuration>

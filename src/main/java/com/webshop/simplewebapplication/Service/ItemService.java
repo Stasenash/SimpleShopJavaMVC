@@ -1,7 +1,6 @@
 package com.webshop.simplewebapplication.Service;
 
-import com.webshop.simplewebapplication.database.ItemDAO;
-import com.webshop.simplewebapplication.database.ItemDAOHib;
+import com.webshop.simplewebapplication.database.Item.ItemDAOHib;
 import com.webshop.simplewebapplication.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

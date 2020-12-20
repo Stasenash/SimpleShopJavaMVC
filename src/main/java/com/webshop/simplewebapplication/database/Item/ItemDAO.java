@@ -1,4 +1,4 @@
-package com.webshop.simplewebapplication.database;
+package com.webshop.simplewebapplication.database.Item;
 
 import com.webshop.simplewebapplication.model.Item;
 import org.springframework.stereotype.Component;

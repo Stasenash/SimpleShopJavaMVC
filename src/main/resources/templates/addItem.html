@@ -13,6 +13,9 @@
     <h2 style="margin-left: 10%; font-family: Algerian,serif;">SimpleShop</h2>
 </header>
 <body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
     <style>
         #confirm{
             display: none;
@@ -38,10 +41,14 @@
     <div class= "itemAdd" id="prodAdd" >
         <a href="/"><button>Вернуться в товары</button></a>
         <span class="descr" id="add-item">Добавить новый товар</span>
-        <form action="/add/confirm" method="post" enctype="multipart/form-data">
+        <form action="/add" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="Name" name="name" id="name" th:required="required"/>
             <input type="number" placeholder="Price" name="price" id="price" max="2147483647" th:required="required"/>
-                              
+            <select name="category" id="category" th:required="required">
+                <option th:each="category : ${categories}"
+                        th:value="${category.getName()}"
+                        th:text="${category.getName()}"></option>
+            </select>
             <button type="submit" id="submit">Добавить</button>
         </form>
     </div>

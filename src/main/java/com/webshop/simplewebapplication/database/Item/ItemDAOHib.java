@@ -1,5 +1,6 @@
-package com.webshop.simplewebapplication.database;
+package com.webshop.simplewebapplication.database.Item;
 
+import com.webshop.simplewebapplication.database.HibernateSessionFactoryUtil;
 import com.webshop.simplewebapplication.model.Item;
 import org.hibernate.Query;
 import org.hibernate.Session;
