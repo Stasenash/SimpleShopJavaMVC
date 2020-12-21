@@ -7,6 +7,7 @@ import com.webshop.simplewebapplication.model.MyUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,9 @@ public class RegistrationController {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @GetMapping("/registration")
     public String registration() {
         return "registration";
@@ -37,7 +41,7 @@ public class RegistrationController {
         if (userService.findByLogin(login) == null){
             Cart cart = new Cart(0,login);
             cartService.createCart(cart);
-            userService.createUser(new MyUser(0, login, password, cart));
+            userService.createUser(new MyUser(0, login, bCryptPasswordEncoder.encode(password), cart));
             logger.info("Created user with login: " + login);
             modelAndView.setViewName("login");
         } else{

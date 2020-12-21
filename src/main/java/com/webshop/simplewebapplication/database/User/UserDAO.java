@@ -6,4 +6,6 @@ public interface UserDAO {
     MyUser findByLogin(String login);
 
     void createUser(MyUser user);
+
+    void deleteUser(MyUser user);
 }

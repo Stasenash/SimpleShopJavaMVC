@@ -36,4 +36,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public void createUser(MyUser user) {
         userDao.createUser(user);
     }
+
+    public void deleteUser(MyUser user) {
+        userDao.deleteUser(user);
+    }
 }

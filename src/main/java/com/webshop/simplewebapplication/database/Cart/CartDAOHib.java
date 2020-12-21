@@ -53,4 +53,32 @@ public class CartDAOHib implements CartDAO{
             session.close();
         }
     }
+
+    public CartItem findCartItemByCartAndItem(Cart cart, Item item) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            Query query = session.createQuery("FROM CartItem where item = :item and cart =:cart");
+            query.setParameter("item", item);
+            query.setParameter("cart", cart);
+            return (CartItem) query.list().get(0);
+        } catch (Exception e) {
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    public void deleteCart(Cart cart) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try{
+            Transaction transaction = session.beginTransaction();
+            session.delete(cart);
+            transaction.commit();
+        }catch (Exception e){
+            System.out.println("Exception: " + e);
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
 }

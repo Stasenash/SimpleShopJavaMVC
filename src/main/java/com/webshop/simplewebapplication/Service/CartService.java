@@ -25,4 +25,12 @@ public class CartService {
     public void addItemToCart(CartItem cartItem) {
         dataBase.addItemToCart(cartItem);
     }
+
+    public CartItem findCartItemByCartAndItem(Cart cart, Item item) {
+        return dataBase.findCartItemByCartAndItem(cart, item);
+    }
+
+    public void deleteCart(Cart cart) {
+        dataBase.deleteCart(cart);
+    }
 }

@@ -151,6 +151,8 @@
               th:object="${category}">
             <button class="category-btn" th:attr="data-category-name=${category.getId()}" th:text="${category.getName()}"></button>
         </span>
+        <input type="text" placeholder="Найти товар" id="search-item">
+        <button class="btn btn-sm search-btn">Найти</button>
     </footer>
 
   <script>
@@ -187,6 +189,13 @@
           let itemId = btn.attr("data-item-id");
           btn.attr("disabled", "disabled");
           window.location.href = "/item/" + itemId + "/show";
+      });
+
+      $(".search-btn").click((e) => {
+          let btn = $(e.currentTarget);
+          let name = document.getElementById('search-item').value
+          btn.attr("disabled", "disabled");
+          window.location.href = "/item/" + name + "/find";
       });
 
   </script>

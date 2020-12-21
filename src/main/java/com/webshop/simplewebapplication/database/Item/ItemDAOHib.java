@@ -2,13 +2,14 @@ package com.webshop.simplewebapplication.database.Item;
 
 import com.webshop.simplewebapplication.controller.ListController;
 import com.webshop.simplewebapplication.database.HibernateSessionFactoryUtil;
-import com.webshop.simplewebapplication.model.Category;
-import com.webshop.simplewebapplication.model.Item;
+import com.webshop.simplewebapplication.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
+import java.time.temporal.UnsupportedTemporalTypeException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -72,10 +73,14 @@ public class ItemDAOHib implements ItemDAO {
     }
 
     @Override
-    public List<Item> findAllInCart() {
+    public List<Item> findAllInCart(Cart cart) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try{
-            List<Item> items = (List<Item>) session.createQuery("From Item where status = 'Уже в корзине'").list();
+            List<CartItem> cartItems  = (List<CartItem>) session.createQuery("From CartItem where cart = :cart").setParameter("cart",cart).list();
+            ArrayList<Item> items = new ArrayList<>();
+            for (int i = 0; i < cartItems.size(); i++){
+                items.add(cartItems.get(i).getItem());
+            }
             return items;
         }catch (Exception e){
             return null;
@@ -103,17 +108,11 @@ public class ItemDAOHib implements ItemDAO {
     }
 
     @Override
-    public void deleteFromCart(int id, boolean isSold) {
+    public void deleteFromCart(CartItem cartItem) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try{
             Transaction transaction = session.beginTransaction();
-            Item item = findById(id);
-            if (isSold){
-                item.setPhone("Продано");
-            }else {
-                item.setPhone("Доступно для покупки");
-            }
-            session.update(item);
+            session.delete(cartItem);
             transaction.commit();
         }catch (Exception e){
             System.out.println("Exception: " + e);
@@ -124,10 +123,14 @@ public class ItemDAOHib implements ItemDAO {
     }
 
     @Override
-    public int getSumInCart() {
+    public int getSumInCart(Cart cart) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         try{
-            List<Item> items = (List<Item>) session.createQuery("From Item where status = 'Уже в корзине'").list();
+            List<CartItem> cartItems  = (List<CartItem>) session.createQuery("From CartItem where cart = :cart").setParameter("cart",cart).list();
+            ArrayList<Item> items = new ArrayList<>();
+            for (int i = 0; i < cartItems.size(); i++){
+                items.add(cartItems.get(i).getItem());
+            }
             int sum = 0;
             for (Item item:items) {
                 sum += item.getPrice();
@@ -157,6 +160,45 @@ public class ItemDAOHib implements ItemDAO {
         try {
             List<Item> items = (List<Item>) session.createQuery("From Item where category = :category").setParameter("category", category).list();
             return items;
+        }catch (Exception e){
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<Item> searchByWord(String name) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            name = "%" + name + "%";
+            List<Item> items = (List<Item>) session.createQuery("From Item where name like :name").setParameter("name", name).list();
+            return items;
+        }catch (Exception e){
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<Item> searchByUser(MyUser user) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            List<Item> items = (List<Item>) session.createQuery("From Item where myUser = :user").setParameter("user", user).list();
+            return items;
+        }catch (Exception e){
+            return null;
+        }finally {
+            session.close();
+        }
+    }
+
+    public List<CartItem> findAllCartItems(Cart cart) {
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            List<CartItem> cartItems = (List<CartItem>) session.createQuery("From CartItem where cart = :cart").setParameter("cart", cart).list();
+            return cartItems;
         }catch (Exception e){
             return null;
         }finally {

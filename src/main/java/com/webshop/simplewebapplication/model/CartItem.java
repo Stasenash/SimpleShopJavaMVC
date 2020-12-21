@@ -24,4 +24,12 @@ public class CartItem {
         this.item = item;
         this.cart = cart;
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public Item getItem() {
+        return item;
+    }
 }
