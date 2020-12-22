@@ -92,6 +92,17 @@
 			<version>2.3.1</version>
 			<scope>provided</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.spotify</groupId>-->
+<!--			<artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--			<version>1.4.0</version>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>RELEASE</version>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -109,7 +120,30 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.7</version>
+				<configuration>
+					<repository>stasenash/${project.build.finalName}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>push</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<finalName>simplewebapplication</finalName>
 	</build>
 
 </project>

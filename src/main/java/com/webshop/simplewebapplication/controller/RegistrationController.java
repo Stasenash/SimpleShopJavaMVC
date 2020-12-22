@@ -26,7 +26,7 @@ public class RegistrationController {
     private CartService cartService;
 
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/registration")
     public String registration() {
